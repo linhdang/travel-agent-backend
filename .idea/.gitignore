@@ -1,0 +1,18 @@
+# Default ignored files
+/workspace.xml
+/../target/classes/application.properties
+/compiler.xml
+/../target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+/../target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+/encodings.xml
+/../target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+/../target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+/../target/classes/ucd/travelagent/Main.class
+/misc.xml
+/../target/maven-archiver/pom.properties
+/../travel-agent-backend.iml
+/../target/travel-agent-backend-0.1.0.jar
+/../target/travel-agent-backend-0.1.0.jar.original
+/../target/classes/ucd/travelagent/controller/TravelAgentController.class
+/../target/classes/ucd/travelagent/service/TravelBrokerService.class
+/uiDesigner.xml
