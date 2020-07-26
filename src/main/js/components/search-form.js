@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
 
 
 class SearchForm extends React.Component {
@@ -12,8 +13,10 @@ class SearchForm extends React.Component {
         departure: '',
         arrival: '',
         from: '',
-        to: ''
-      };
+        to: '',
+        accommodations: [],
+        flights: []
+      }
   
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,6 +33,18 @@ class SearchForm extends React.Component {
       fetch('/api/request-new-plan', {
         method: 'POST',
         body: data,
+      }).then(response => response.json()).then(json => {
+          console.log(json)
+          let accommodations=[]
+          for (let i=0 ; i < json['proposedAccomodations'].length; i++) {
+             accommodations.push(json['proposedAccomodations'][i]);
+          }
+          let flights=[]
+          for (let i=0 ; i < json['proposedFlights'].length; i++) {
+              flights.push(json['proposedFlights'][i]);
+          }
+          this.setState({"flights": flights});
+          this.setState({"accommodations": accommodations});
       });
     }
   
@@ -87,37 +102,41 @@ class SearchForm extends React.Component {
               Submit
             </Button>
           </Form>
-          <h2> Results</h2>
-          <table class="table">
+          <h2> Accommodations</h2>
+          <Table striped bordered hover size="sm">
             <thead>
-              <tr>
-                <th scope="col">Provider</th>
-                <th scope="col">Price</th>
-                <th scope="col">Type</th>
-                <th scope="col">Price</th>
-              </tr>
+            <tr>
+              <th>Accommodation Type</th>
+              <th>Provider</th>
+              <th>Price</th>
+            </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+            {
+              this.state.accommodations.map((value, index) => {
+              return <tr> <td> {value.accomodationType}</td><td> {value.provider}</td><td> {value.price}</td></tr>
+              })
+            }
+
+
             </tbody>
-          </table>
+          </Table>
+          <h2> Flights</h2>
+          <Table striped bordered hover size="sm">
+              <thead>
+              <tr>
+                <th>Provider</th>
+                <th>Price</th>
+              </tr>
+              </thead>
+              <tbody>
+              {
+                this.state.flights.map((value, index) => {
+                  return <tr> <td> {value.provider}</td><td> {value.price}</td></tr>
+                })
+              }
+              </tbody>
+          </Table>
         </div>
       );
     }
