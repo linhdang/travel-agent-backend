@@ -34,6 +34,4 @@ public class TravelAgentController {
         return plan.map(s -> ResponseEntity.ok(Objects.requireNonNull(s))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-
-
 }
