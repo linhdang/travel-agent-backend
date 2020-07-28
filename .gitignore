@@ -10,3 +10,8 @@
 /target/classes/ucd/travelagent/controller/TravelAgentController.class
 /target/classes/ucd/travelagent/service/TravelBrokerService.class
 /travel-agent-backend.iml
+/src/main/resources/static/built/bundle.js
+/src/main/resources/static/built/bundle.js.map
+/target/
+/.idea/
+/package-lock.json
