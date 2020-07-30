@@ -127,12 +127,14 @@ class SearchForm extends React.Component {
               <tr>
                 <th>Provider</th>
                 <th>Price</th>
+                <th>Date</th>
               </tr>
               </thead>
               <tbody>
               {
                 this.state.flights.map((value, index) => {
-                  return <tr> <td> {value.provider}</td><td> {value.price}</td></tr>
+                  const date = new Date(value.date).toLocaleDateString();
+                  return <tr> <td> {value.provider}</td><td> {value.price}</td><td> {date}</td></tr>
                 })
               }
               </tbody>
